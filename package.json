@@ -1,0 +1,30 @@
+{
+  "name": "CodeceptJS",
+  "version": "1.0.0",
+  "description": "CodeceptJS Sample Test Framework",
+  "main": "codecept.conf.js",
+  "dependencies": {
+    "@wdio/selenium-standalone-service": "^5.16.10",
+    "codeceptjs": "^2.4.3",
+    "codeceptjs-assert": "0.0.4",
+    "unirest": "^0.6.0",
+    "wdio": "^4.0.0"
+  },
+  "devDependencies": {
+    "allure-commandline": "^2.13.0"
+  },
+  "psono_secret_id": "[PSONO_CREDENTIALS_FILE_ID]",
+  "scripts": {
+    "test": "bash test_runner.sh",
+    "clean": "bash test_runner.sh clean true true",
+    "report": "bash test_runner.sh report true true",
+    "get_credentials": "bash test_runner.sh credentials true true",
+    "build": "npm update && npm install && npm install @wdio/selenium-standalone-service --save"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/izhanh/CodeceptJSFramework.git"
+  },
+  "author": "Izhan Hernandez",
+  "license": "ISC"
+}
