@@ -1,7 +1,7 @@
 /*
   [HELPERS] CUSTOM HELPER
 
-  Author: Tsering Paljor
+  Author: Izhan Hernández
   Date Created: March 24th 2020
 */
 
@@ -47,21 +47,6 @@ class CustomHelper extends Helper {
       element.sendKeys(getRandomEmail());
     } catch (err) {
       console.log(err);
-    }
-  }
-
-  // Log out Customer function
-  async logOutIfVisible() {
-    // For some reason, sometimes the user is still logged in despite 
-    // starting a new session. We therefore need to ensure the user is
-    // logged out at the start of every session.
-    const logOutLink = '//span[contains(text(), "Log Out")]';
-    let helper = this.helpers['WebDriver'];
-    try {
-      helper.click({logOutLink});
-      console.log('Logging out.');
-    } catch (err) {
-      console.log('Already logged out.');
     }
   }
 }
