@@ -17,4 +17,4 @@
 ### Test Reports (will install Allure if not in /node_modules yet):
 	npm run report
 	
-![Allure test report](https://imgur.com/a/2pltJOf)
+![Allure test report](https://i.imgur.com/c20APkn.png)
