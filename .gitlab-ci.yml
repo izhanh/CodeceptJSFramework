@@ -20,7 +20,7 @@ e2e-tests-chrome:
     - chmod 777 test_runner.sh
     - npm run build
   script:
-    - ./test_runner.sh usa $TEST_TAG true
+    - ./test_runner.sh prod $TEST_TAG true
   after_script:
     - cp -r output/ ci_artifacts/
   artifacts:
