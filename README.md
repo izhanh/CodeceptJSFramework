@@ -17,4 +17,5 @@
 ### Test Reports (will install Allure if not in /node_modules yet):
 	npm run report
 	
+This command will read the 'output' folder that is generated automatically upon running tests, load a webserver and open a page (in your default browser) with the test results:
 ![Allure test report](https://i.imgur.com/c20APkn.png)
