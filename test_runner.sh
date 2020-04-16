@@ -89,7 +89,7 @@ if [[ $1 == *"report"* ]]; then
 
 # If the first arg == 'clean' then the 'output' folder is cleaned before testing
 elif [[ $1 == *"clean"* ]]; then
-	echo "Cleaning 'Output' folder before testing"
+	printTitle "Cleaning [./output] folder before testing"
 	rm -rf ./output/*
 elif [[ $1 == *"credentials"* ]]; then
 	echo "Removing [./credentials.json] file"
