@@ -5,21 +5,32 @@
   "main": "codecept.conf.js",
   "dependencies": {
     "@wdio/selenium-standalone-service": "^5.16.10",
-    "codeceptjs": "^2.4.3",
+    "codeceptjs": "^2.6.1",
     "codeceptjs-assert": "0.0.4",
     "unirest": "^0.6.0",
-    "wdio": "^4.0.0"
+    "wdio": "^4.0.0",
+    "webdriverio": "^6.0.16"
   },
   "devDependencies": {
-    "allure-commandline": "^2.13.0"
+    "@codeceptjs/mailslurp-helper": "^1.0.2",
+    "@wdio/devtools-service": "^6.0.16",
+    "allure-commandline": "^2.13.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "5.0.2",
+    "prettier": "^1.19.1"
   },
   "psono_secret_id": "[PSONO_CREDENTIALS_FILE_ID]",
   "scripts": {
     "test": "bash test_runner.sh",
+    "lint": "eslint --ext .js .",
+    "lintfix": "eslint --fix --ext .js .",
     "clean": "bash test_runner.sh clean true true",
     "report": "bash test_runner.sh report true true",
     "get_credentials": "bash test_runner.sh credentials true true",
-    "build": "npm update && npm install && npm install @wdio/selenium-standalone-service --save"
+    "build": "npm update && npm install && npm install @wdio/selenium-standalone-service --save",
   },
   "repository": {
     "type": "git",
