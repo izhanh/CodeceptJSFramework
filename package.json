@@ -30,7 +30,7 @@
     "clean": "bash test_runner.sh clean true true",
     "report": "bash test_runner.sh report true true",
     "get_credentials": "bash test_runner.sh credentials true true",
-    "build": "npm update && npm install && npm install @wdio/selenium-standalone-service --save",
+    "build": "npm update && npm install && npm install @wdio/selenium-standalone-service --save"
   },
   "repository": {
     "type": "git",
