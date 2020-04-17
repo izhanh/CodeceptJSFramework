@@ -3,6 +3,7 @@
 // ============================================================================================================================================== //
 
 var fs = require('fs');
+var request = require('request');
 
 // ============================================================================================================================================== //
 // CONFIGURE STAGE
@@ -13,11 +14,18 @@ let includePageFiles = {};
 fs.readdirSync('./pages/').forEach(folder => { fs.readdirSync('./pages/' + folder).forEach(file => {
   includePageFiles[folder + '_' + file.replace('.js', '')] = './pages/' + folder + '/' + file; });});
 
-// Parse the credentials file
+var packageJSON = JSON.parse(fs.readFileSync('package.json'));
 var credentials = JSON.parse(fs.readFileSync('credentials.json'));
 
 // If functional QA tests are run locally, use release deployment, else use squash deployment
-var URL = "https://www.google.com/";
+var domainBase = process.env.UNHAGGLE_BASE_DOMAIN;
+var domainBranch = process.env.UNHAGGLE_BRANCH_NAME;
+if (!process.env.SQUASH_BRANCH) {
+    var URL = "https://test-usa--release-gz7y0.docker2.motocommerce.ca/dealer/";
+} else {
+    var URL = "https://" + credentials.environment.user + ":" + credentials.environment.pass
+      + "@test-usa--" + domainBranch + "." + domainBase + "/dealer/";
+}
 console.log("WebDriver.config.url: " + URL);
 
 // ============================================================================================================================================== //
@@ -47,6 +55,10 @@ let config = {
     AssertWrapper : {
       require: 'codeceptjs-assert',
     },
+    MailSlurp: {
+      require: '@codeceptjs/mailslurp-helper',
+      apiKey: '3e1f79662e3759a399997dadff68eec4508109f1754ee56b67274c7840e33c5e'
+    }
   },
   include: includePageFiles,
   mocha: {},
@@ -58,16 +70,10 @@ let config = {
     steps: './step_definitions/*/*.js'
   },
   plugins: {
-    screenshotOnFail: {
-      enabled: true
-    },
-    wdio: {
-      enabled: true,
-      services: ['selenium-standalone']
-    },
-    allure: {
-      enabled: true
-    }
+    allure: { enabled: true },
+    pauseOnFail: { enabled: true },
+    screenshotOnFail: { enabled: true },
+    wdio: { enabled: true, services: ['selenium-standalone', 'devtools'] },
   },
   multiple: {
     basic: {
@@ -77,8 +83,9 @@ let config = {
       ]
     }
   },
-  name: 'Sample CodeceptJS Fwk',
-  creds: credentials
+  name: 'unhaggle-tier3-codecept',
+  creds: credentials,
+  prod_sites: packageJSON['prod_sites']
 }
 
 exports.config = config;
