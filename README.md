@@ -3,12 +3,12 @@
 ## Automation Framework for Selenium/Webdriver using CodeceptJS and Gherkin
 
 ## Prerequsites
-	- NodeJS (8.10+)
-	- npm (6.0+)
-	- Chrome (75.0+)
+    - NodeJS (8.10+)
+    - npm (6.0+)
+    - Chrome (75.0+)
 
 ### Installation:
-	npm run build
+    npm run build
 
 ### Usage:
     npm test
@@ -16,6 +16,10 @@
         Optional Params: {no clean: no-clean} {pause on test failure: pause-fail}
 
     example: npm test prod samplTests false
+
+### Linter:
+    npm run lint
+    npm run lintfix
 
 ### Test Reports (will install Allure if not in /node_modules yet):
 	npm run report
