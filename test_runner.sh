@@ -10,7 +10,7 @@ sysName=$(uname -a | tr '[:upper:]' '[:lower:]')
 # Print titles
 function printTitle() {
 	echo $'\n'"=============================================================================================="
-	echo $1$'\n'"=============================================================================================="
+	echo "$1"$'\n'"=============================================================================================="
 }
 
 # Auxiliar function to get ChromeDriver processes
@@ -72,8 +72,11 @@ function getCredentialsFile() {
 # MAIN FUNCTION
 # ================================================================================================================================================ #
 
-if [[ $# -ne 3 ]]; then
-	printTitle "Wrong amount of paramenters. Usage: 'test_run.sh {env} {test_tag} {headless: true/false}"
+if [[ $# -lt 3 ]]; then
+	instructions="Wrong amount of paramenters:"$'\n'"    Mandatory: test_run.sh {env} {test_tag} {headless: true/false}"$'\n'
+	instructions="$instructions    Optional: {no clean: no-clean}"
+	printTitle "$instructions"
+	echo ""
 	exit -1
 fi
 
@@ -90,6 +93,7 @@ if [[ $1 == *"report"* ]]; then
 # If the first arg == 'clean' then the 'output' folder is cleaned before testing
 elif [[ $1 == *"clean"* ]]; then
 	printTitle "Cleaning [./output] folder before testing"
+	echo ""
 	rm -rf ./output/*
 elif [[ $1 == *"credentials"* ]]; then
 	echo "Removing [./credentials.json] file"
@@ -106,6 +110,9 @@ else
 	printTitle "Generating Credentials"
 	if [ ! -f "./credentials.json" ]; then getCredentialsFile; fi
 	echo $'\n'"File ['./credentials.json'] already exists, running the tests..."
+
+	# Clean the output folder first if no --no-clean param is in the optional arguments
+	if [[ ! " $@ " =~ " no-clean " ]]; then npm run clean; fi
 
 	# If the Headless param is 'true', set up the conf file
 	if [[ $3 == *"true"* ]]; then
