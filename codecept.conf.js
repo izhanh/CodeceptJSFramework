@@ -18,14 +18,7 @@ var packageJSON = JSON.parse(fs.readFileSync('package.json'));
 var credentials = JSON.parse(fs.readFileSync('credentials.json'));
 
 // If functional QA tests are run locally, use release deployment, else use squash deployment
-var domainBase = process.env.UNHAGGLE_BASE_DOMAIN;
-var domainBranch = process.env.UNHAGGLE_BRANCH_NAME;
-if (!process.env.SQUASH_BRANCH) {
-    var URL = "https://test-usa--release-gz7y0.docker2.motocommerce.ca/dealer/";
-} else {
-    var URL = "https://" + credentials.environment.user + ":" + credentials.environment.pass
-      + "@test-usa--" + domainBranch + "." + domainBase + "/dealer/";
-}
+var URL = "https://www.google.es";
 console.log("WebDriver.config.url: " + URL);
 
 // ============================================================================================================================================== //
@@ -36,7 +29,6 @@ let config = {
   output: './output',
   helpers: {
     WebDriver: {
-      //url: 'https://qatestbmw.motocommerce.ca/dealer/login',
       url: URL,
       browser: 'chrome',
       desiredCapabilities: {
@@ -57,7 +49,7 @@ let config = {
     },
     MailSlurp: {
       require: '@codeceptjs/mailslurp-helper',
-      apiKey: '3e1f79662e3759a399997dadff68eec4508109f1754ee56b67274c7840e33c5e'
+      apiKey: '[mail_slurp_api_key]'
     }
   },
   include: includePageFiles,
@@ -77,15 +69,11 @@ let config = {
   },
   multiple: {
     basic: {
-      browsers: [
-        'firefox',
-        'chrome'
-      ]
+      browsers: ['firefox', 'chrome']
     }
   },
-  name: 'unhaggle-tier3-codecept',
-  creds: credentials,
-  prod_sites: packageJSON['prod_sites']
+  name: 'CodeceptJS Sample Fwk',
+  creds: credentials
 }
 
 exports.config = config;
