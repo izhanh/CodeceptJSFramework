@@ -114,6 +114,16 @@ else
 	# Clean the output folder first if no --no-clean param is in the optional arguments
 	if [[ ! " $@ " =~ " no-clean " ]]; then npm run clean; fi
 
+	# If the PauseOnFailure otional param is enabled, set up the conf file
+	if [[ " $@ " =~ " pause-fail " ]]; then
+		printTitle "Pause on Failure enabled"
+		sed --in-place 's|  //pauseOnFail:|  pauseOnFail:|g' codecept.conf.js
+	else
+		printTitle "Pause on Failure disabled"
+		sed --in-place 's|  pauseOnFail:|  //pauseOnFail:|g' codecept.conf.js
+	fi
+	echo ""
+
 	# If the Headless param is 'true', set up the conf file
 	if [[ $3 == *"true"* ]]; then
 		printTitle "Running in headless mode"
