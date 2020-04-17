@@ -13,7 +13,7 @@
 ### Usage:
     npm test
         Mandatory Params: {environment} {test_tag} {headless: true/false}
-        Optional: {no clean: no-clean}
+        Optional Params: {no clean: no-clean} {pause on test failure: pause-fail}
 
     example: npm test prod samplTests false
 
