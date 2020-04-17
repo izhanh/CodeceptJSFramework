@@ -11,7 +11,10 @@
 	npm run build
 
 ### Usage:
-    npm test {environment} {test_tag} {headless: true/false}
+    npm test
+        Mandatory Params: {environment} {test_tag} {headless: true/false}
+        Optional: {no clean: no-clean}
+
     example: npm test prod samplTests false
 
 ### Test Reports (will install Allure if not in /node_modules yet):
