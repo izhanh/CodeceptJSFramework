@@ -63,7 +63,7 @@ let config = {
   },
   plugins: {
     allure: { enabled: true },
-    pauseOnFail: { enabled: true },
+    //pauseOnFail: { enabled: true },
     screenshotOnFail: { enabled: true },
     wdio: { enabled: true, services: ['selenium-standalone', 'devtools'] },
   },

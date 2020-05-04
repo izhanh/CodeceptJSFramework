@@ -1,95 +1,61 @@
 /*
-  [SAMPLE] TEST FUNCTIONS
+  [SAMPLE] SAMPLE TEST STEPS
 
-  Author: Izhan Hernández
-  Date Created: April 1st 2019
+  Author : Izhan Hernández
+  Date Created : April 1st 2020
 */
 
-// IMPORT
+// IMPORTS
 
-const { I } = inject();
+const { sample_sample_test } = inject();
 
-// CONSTANTS
+// GHERKIN SENTENCES
 
-const sampleUrl = "https://www.google.com";
+Given("user opens Google page", () => {
+  sample_sample_test.getURL();
+});
 
-// TESTS
+Given("user passes the test", () => {
+  sample_sample_test.smaplePass();
+});
 
-module.exports = {
-  // FUNCTIONS
+Given("user fails the test", () => {
+  sample_sample_test.smapleFail();
+});
 
-  getURL() {
-    I.amOnPage(sampleUrl);
-  },
+Given("user waits {int} seconds", integ => {
+  I.wait(integ);
+});
 
-  // Sample Pass
-  smaplePass() {
-    I.assert("1", "1");
-  },
+Given("user tests sample config param", () => {
+  sample_sample_test.sampleSetConfigParamTest();
+  sample_sample_test.sampleGetConfigParamTest();
+});
 
-  // Sample Pass
-  smapleFail() {
-    I.assert("1", "2");
-  },
+Given("user tests sample global variable", () => {
+  sample_sample_test.sampleSetGlobalVarTest();
+  sample_sample_test.sampleGetGlobalVarTest();
+});
 
-  // Test setting a config param
-  async sampleSetConfigParamTest() {
-    I.say("===> Setting config param [random] = 'value'");
-    await I.setConfigParamenter("random", "value");
-  },
+Given("user tests sample mail sending and receiving", () => {
+  sample_sample_test.sampleMailTest();
+});
 
-  // Test getting a config param
-  async sampleGetConfigParamTest() {
-    I.say(`===> Config param [env] = ${await I.getConfigParamenter("env")}`);
-    I.say(
-      `===> Config param [random] = ${await I.getConfigParamenter("random")}`
-    );
-  },
+Given("user tests capturing logs of the browser", () => {
+  sample_sample_test.captureLogsTest();
+});
 
-  // Test getting a config param
-  async sampleSetGlobalVarTest() {
-    I.say("===> Setting Global Variable [random] = 'value'");
-    await I.setGlobalVar("random", "value");
-    await I.setGlobalVar("random2", "value2");
-  },
+Given("user prints and saves all available browser methods", () => {
+  sample_sample_test.getAllBrowserMethods();
+});
 
-  // Test getting a config param
-  async sampleGetGlobalVarTest() {
-    I.say(`===> Global Variable [random] = ${await I.getGlobalVar("random")}`);
-  },
+Given("user changes the size of the screen to {string}", device => {
+  sample_sample_test.changeScreenSizeDeviceTest(device);
+});
 
-  // Test generating a mail inbox
-  async sampleMailTest() {
-    // Generate a mailbox
-    const mailBox = await I.haveNewMailbox();
-    I.setCurrentMailInbox(mailBox);
-    I.say(`New mailbox created: ${await I.getCurrentMailInbox()}`);
-
-    // Send a mail to the recently created inbox
-    I.sendEmail({ to: [mailBox.emailAddress], subject: "Test", body: "Email" });
-
-    // Check that the email was received
-    I.waitForLatestEmail();
-    // Assert we received the mail
-    I.seeInEmailSubject("Test");
-  },
-
-  getAllBrowserMethods() {
-    I.getALlDriverMethods();
-  },
-
-  captureLogsTest() {
-    I.say(I.grabBrowserLogs());
-    //I.saveBrowserLogs();
-  },
-
-  changeScreenSizeTest(width, height) {
-    I.say(`Changing screen size to: [${width}x${height}]`);
-    I.changeScreenSizeTo(width, height);
-  },
-
-  changeScreenSizeDeviceTest(device) {
-    I.say(`Changing screen size to: [${device}]`);
-    I.changeScreenSizeToDevice(device);
+Given(
+  "user changes the size of the screen to {int} x {int}",
+  (width, height) => {
+    sample_sample_test.changeScreenSizeTest(width, height);
   }
-};
+);
